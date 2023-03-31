@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="peppol_server_form" model="ir.ui.view">
+        <field name="name">Peppol Server</field>
+        <field name="model">peppol.server</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name" />
+                    <field name="url" />
+                    <field name="user" />
+                    <field name="password" />
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="peppol_server_action" model="ir.actions.act_window">
+      <field name="name">Peppol Server</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">peppol.server</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_type">form</field>
+    </record>
+
+    <menuitem id="menu_peppol_server" parent="base.menu_custom" action="peppol_server_action" />
+</odoo>

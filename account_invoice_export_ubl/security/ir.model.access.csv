@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_peppol_server,access_peppol_server_mngr,model_peppol_server,base.group_system,1,1,1,1

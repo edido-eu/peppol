@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="sending_invoice_exception">
+        <div>
+            <p>Error sending invoice: <t t-esc="error_type" /></p>
+            <p><t t-esc="error_detail" /></p>
+        </div>
+    </template>
+</odoo>

@@ -1,0 +1,78 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+env/
+build/
+develop-eggs/
+dist/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+/src/
+*.egg-info/
+.installed.cfg
+*.egg
+*.eggs
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+.pytest_cache
+
+# Translations
+*.mo
+
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+.idea
+
+# Rope
+.ropeproject
+
+# Django stuff:
+*.log
+
+# Sphinx documentation
+docs/_build/
+
+rancher.env
+
+# backup files
+.~*#
+
+sftp/share/**/*
+
+# local dev requirements
+odoo/dev_requirements.txt
+
+# local dev composition
+docker-compose.override.yml
+
+# build directory
+setup/release
+
+odoo.cfg
+.odoorc
+/tmp
+
+# VSCode setting
+.vscode/
