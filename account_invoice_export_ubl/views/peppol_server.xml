@@ -8,8 +8,18 @@
                 <group>
                     <field name="name" />
                     <field name="url" />
+                    <field name="url_feedback" />
                     <field name="user" />
                     <field name="password" />
+                </group>
+                <group>
+                    <field name="history_ids">
+                        <tree>
+                            <field name="create_date"/>
+                            <field name="document"/>
+                            <field name="is_sending"/>
+                        </tree>
+                    </field>
                 </group>
             </form>
         </field>

@@ -2,8 +2,6 @@
 # Copyright 2023 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
-import requests
-
 import odoo
 from odoo import _, fields, models
 from odoo.exceptions import UserError, except_orm
@@ -48,15 +46,16 @@ class AccountInvoice(models.Model):
     def _peppol_export_invoice(self):
         """Export electronic invoice to external service."""
         self.ensure_one()
-        file_data = {"file": self.generate_ubl_xml_string()}
+        ubl = self.generate_ubl_xml_string()
         server = self.env.user.company_id.peppol_server_id.sudo()
-        res = requests.post(server.url, auth=server._auth(), files=file_data)
-        if res.status_code != 200:
-            raise UserError(
-                _("HTTP error {} sending UBL invoice: {}".format(res.status_code, res.text))
-            )
+        res = server._send_ubl(self, ubl)
         self.invoice_exported = True
         return res.text
+
+    def _peppol_export_confirmed(self):
+        """Confirm successful sending of electronic invoice."""
+        self.ensure_one()
+        self.invoice_export_confirmed = True
 
     def _peppol_sending_log_error(self, values):
         message = self.env.ref(

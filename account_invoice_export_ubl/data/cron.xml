@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<odoo noupdate="1">
+
+    <record model="ir.cron" forcecreate="True" id="cron_peppol_feedback">
+        <field name="name">PEPPOL Sending Feedback</field>
+        <field name="active">True</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="nextcall">2023-01-01 02:30:00</field>
+        <field name="doall" eval="False" />
+        <field name="model">peppol.server</field>
+        <field name="function">_cron_check_status</field>
+    </record>
+
+</odoo>

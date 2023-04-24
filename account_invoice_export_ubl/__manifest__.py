@@ -15,6 +15,7 @@
         "views/peppol_server.xml",
         "views/account_config_settings.xml",
         "data/template.xml",
+        "data/cron.xml",
     ],
     "installable": True,
 }

@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <field name="move_id" position="after">
                 <field name="invoice_exported" />
-                <field name="invoice_export_confirmed" invisible="1" />
+                <field name="invoice_export_confirmed" />
             </field>
             <button name="action_invoice_sent" position="after">
                 <button
