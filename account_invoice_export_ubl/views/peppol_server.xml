@@ -10,7 +10,7 @@
                     <field name="url" />
                     <field name="url_feedback" />
                     <field name="user" />
-                    <field name="password" />
+                    <field name="password" password="True" />
                 </group>
                 <group>
                     <field name="history_ids">

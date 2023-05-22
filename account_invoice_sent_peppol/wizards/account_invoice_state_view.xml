@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="account_invoice_sent_view" model="ir.ui.view">
+        <field name="name">account.invoice.sent.form peppol</field>
+        <field name="model">account.invoice.sent</field>
+        <field name="inherit_id" ref="account_invoice_sent.account_invoice_sent_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[2]" position="after">
+                <group col="4">
+                    <field name="count_peppol" />
+                </group>
+            </xpath>
+            <xpath expr="//button[@name='button_email']" position="after">
+                <button
+                    string="Peppol"
+                    name="button_peppol"
+                    help="Send by peppol invoices for partners having an invoice sending method 'peppol'. Also mark as sent"
+                    type="object"
+                    class="btn-primary"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,53 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* account_invoice_sent_peppol
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-22 09:12+0000\n"
+"PO-Revision-Date: 2023-05-22 09:12+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_invoice_sent_peppol
+#: model:ir.model.fields,field_description:account_invoice_sent_peppol.field_account_invoice_sent_count_peppol
+msgid "By peppol"
+msgstr "Par peppol"
+
+#. module: account_invoice_sent_peppol
+#: model:ir.model,name:account_invoice_sent_peppol.model_account_invoice
+msgid "Invoice"
+msgstr "Facture"
+
+#. module: account_invoice_sent_peppol
+#: code:addons/account_invoice_sent_peppol/wizards/account_invoice_state.py:22
+#, python-format
+msgid "Invoices will be sent by peppol in the background."
+msgstr "Les factures vont être envoyées par peppol en tâche de fond."
+
+#. module: account_invoice_sent_peppol
+#: model:ir.model,name:account_invoice_sent_peppol.model_res_partner
+msgid "Partner"
+msgstr "Partenaire"
+
+#. module: account_invoice_sent_peppol
+#: model:ir.ui.view,arch_db:account_invoice_sent_peppol.account_invoice_sent_view
+msgid "Peppol"
+msgstr ""
+
+#. module: account_invoice_sent_peppol
+#: model:ir.ui.view,arch_db:account_invoice_sent_peppol.account_invoice_sent_view
+msgid "Send by peppol invoices for partners having an invoice sending method 'peppol'. Also mark as sent"
+msgstr "Envoie par peppol les factures ayant comme méthode d'envoi 'peppol'. Aussi marque comme envoyé"
+
+#. module: account_invoice_sent_peppol
+#: model:ir.model,name:account_invoice_sent_peppol.model_account_invoice_sent
+msgid "account.invoice.sent"
+msgstr ""
+

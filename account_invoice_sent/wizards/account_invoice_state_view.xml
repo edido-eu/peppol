@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<odoo>
+  <record id="account_invoice_sent_view" model="ir.ui.view">
+    <field name="name">account.invoice.sent.form</field>
+    <field name="model">account.invoice.sent</field>
+    <field name="arch" type="xml">
+      <form string="Invoices Mass Sending">
+        <group col="4">
+          <field name="count_print" />
+          <field name="email_copy" attrs="{'invisible':[('count_print','=',0)]}" />
+        </group>
+        <group col="4">
+          <field name="count_email" />
+          <field
+            name="count_email_missing"
+            attrs="{'invisible':[('count_email_missing','=',0)]}"
+          />
+        </group>
+        <group>
+          <strong>Please select operation...</strong>
+        </group>
+        <footer>
+          <button
+            string="Print"
+            name="button_print"
+            help="Print invoices for partners having an invoice sending method 'letter'. Also mark as sent"
+            type="object"
+            class="btn-primary"
+          />
+          <button
+            string="Email"
+            name="button_email"
+            help="Send by email invoices for partners having an invoice sending method 'email'. Also mark as sent"
+            type="object"
+            class="btn-primary"
+          />
+          <button
+            string="Mark as sent"
+            name="button_mark_only"
+            help="Only mark as sent without sending anything"
+            type="object"
+          />
+          <button string="Cancel" class="btn-default" special="cancel" />
+        </footer>
+      </form>
+    </field>
+  </record>
+  <act_window
+    id="action_account_invoice_sent"
+    multi="True"
+    key2="client_action_multi"
+    name="Mass Sending"
+    res_model="account.invoice.sent"
+    src_model="account.invoice"
+    view_mode="form"
+    target="new"
+    view_type="form"
+  />
+</odoo>

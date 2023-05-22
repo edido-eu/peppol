@@ -14,9 +14,9 @@ from odoo.exceptions import UserError
 class PeppolServer(models.Model):
     _name = "peppol.server"
 
-    name = fields.Char()
-    url = fields.Char()
-    url_feedback = fields.Char()
+    name = fields.Char(default="Edido")
+    url = fields.Char(default="https://api.edido.eu/peppol/send_ubl", required=True)
+    url_feedback = fields.Char(default="https://api.edido.eu/peppol/get_sending_status")
     user = fields.Char(copy=False)
     password = fields.Char(copy=False)
 
