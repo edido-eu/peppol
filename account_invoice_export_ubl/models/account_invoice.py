@@ -2,6 +2,8 @@
 # Copyright 2023 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
+from lxml import etree
+
 import odoo
 from odoo import _, fields, models
 from odoo.exceptions import UserError, except_orm
@@ -67,3 +69,14 @@ class AccountInvoice(models.Model):
 
     def _peppol_sending_log_success(self):
         self.message_post(body=_("Invoice successfuly sent in UBL"))
+
+    def _ubl_add_order_reference(self, parent_node, ns, version='2.1'):
+        super(AccountInvoice, self)._ubl_add_order_reference(
+            parent_node, ns, version=version)
+        # Order reference is mandatory
+        if not self.name:
+            order_ref = etree.SubElement(
+                parent_node, ns['cac'] + 'OrderReference')
+            order_ref_id = etree.SubElement(
+                order_ref, ns['cbc'] + 'ID')
+            order_ref_id.text = "/"
