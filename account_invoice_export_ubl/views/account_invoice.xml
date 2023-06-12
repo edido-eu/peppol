@@ -12,7 +12,7 @@
             <button name="action_invoice_sent" position="after">
                 <button
                     name="peppol_export_invoice"
-                    string="Send eBill"
+                    string="Send Peppol"
                     type="object"
                     attrs="{'invisible':['|', '|', ('state', '!=', 'open'), ('invoice_exported', '=', True), ('type', 'not in', ('out_invoice', 'out_refund'))]}"
                     groups="base.group_user"

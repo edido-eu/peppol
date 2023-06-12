@@ -1,0 +1,190 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* account_invoice_export_ubl
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-12 12:12+0000\n"
+"PO-Revision-Date: 2023-06-12 12:12+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_invoice_export_ubl
+#: model:ir.model,name:account_invoice_export_ubl.model_res_company
+msgid "Companies"
+msgstr "Sociétés"
+
+#. module: account_invoice_export_ubl
+#: model:ir.model.fields,field_description:account_invoice_export_ubl.field_peppol_history_create_uid
+#: model:ir.model.fields,field_description:account_invoice_export_ubl.field_peppol_server_create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: account_invoice_export_ubl
+#: model:ir.model.fields,field_description:account_invoice_export_ubl.field_peppol_history_create_date
+#: model:ir.model.fields,field_description:account_invoice_export_ubl.field_peppol_server_create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: account_invoice_export_ubl
+#: model:ir.model.fields,field_description:account_invoice_export_ubl.field_peppol_history_display_name
+#: model:ir.model.fields,field_description:account_invoice_export_ubl.field_peppol_server_display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: account_invoice_export_ubl
+#: model:ir.model.fields,field_description:account_invoice_export_ubl.field_peppol_history_document
+msgid "Document"
+msgstr "Document"
+
+#. module: account_invoice_export_ubl
+#: model:ir.ui.view,arch_db:account_invoice_export_ubl.sending_invoice_exception
+msgid "Error sending invoice:"
+msgstr "Erreur lors de l'envoi de la facture:"
+
+#. module: account_invoice_export_ubl
+#: code:addons/account_invoice_export_ubl/models/peppol_server.py:79
+#, python-format
+msgid "HTTP error {} collecting UBL feedback: {}"
+msgstr "HTTP error {} collecting UBL feedback: {}"
+
+#. module: account_invoice_export_ubl
+#: code:addons/account_invoice_export_ubl/models/peppol_server.py:53
+#, python-format
+msgid "HTTP error {} sending UBL: {}"
+msgstr "HTTP error {} sending UBL: {}"
+
+#. module: account_invoice_export_ubl
+#: model:ir.model.fields,field_description:account_invoice_export_ubl.field_peppol_server_history_ids
+msgid "History"
+msgstr "Historique"
+
+#. module: account_invoice_export_ubl
+#: model:ir.model.fields,field_description:account_invoice_export_ubl.field_peppol_history_id
+#: model:ir.model.fields,field_description:account_invoice_export_ubl.field_peppol_server_id
+msgid "ID"
+msgstr "ID"
+
+#. module: account_invoice_export_ubl
+#: model:ir.model,name:account_invoice_export_ubl.model_account_invoice
+msgid "Invoice"
+msgstr "Facture"
+
+#. module: account_invoice_export_ubl
+#: model:ir.model.fields,field_description:account_invoice_export_ubl.field_account_invoice_invoice_export_confirmed
+msgid "Invoice export confirmed"
+msgstr "Export facture confirmé"
+
+#. module: account_invoice_export_ubl
+#: model:ir.model.fields,field_description:account_invoice_export_ubl.field_account_invoice_invoice_exported
+msgid "Invoice exported"
+msgstr "Export facture"
+
+#. module: account_invoice_export_ubl
+#: code:addons/account_invoice_export_ubl/models/account_invoice.py:71
+#, python-format
+msgid "Invoice successfuly sent in UBL"
+msgstr "Facture envoyée avec succès par UBL"
+
+#. module: account_invoice_export_ubl
+#: model:ir.model.fields,field_description:account_invoice_export_ubl.field_peppol_history_is_sending
+msgid "Is sending"
+msgstr "En cours d'envoi"
+
+#. module: account_invoice_export_ubl
+#: model:ir.model.fields,field_description:account_invoice_export_ubl.field_peppol_history___last_update
+#: model:ir.model.fields,field_description:account_invoice_export_ubl.field_peppol_server___last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: account_invoice_export_ubl
+#: model:ir.model.fields,field_description:account_invoice_export_ubl.field_peppol_history_write_uid
+#: model:ir.model.fields,field_description:account_invoice_export_ubl.field_peppol_server_write_uid
+msgid "Last Updated by"
+msgstr "Derniere fois mis à jour par"
+
+#. module: account_invoice_export_ubl
+#: model:ir.model.fields,field_description:account_invoice_export_ubl.field_peppol_history_write_date
+#: model:ir.model.fields,field_description:account_invoice_export_ubl.field_peppol_server_write_date
+msgid "Last Updated on"
+msgstr "Dernière mis à jour le"
+
+#. module: account_invoice_export_ubl
+#: model:ir.model.fields,field_description:account_invoice_export_ubl.field_peppol_history_md5
+msgid "Md5"
+msgstr "Md5"
+
+#. module: account_invoice_export_ubl
+#: model:ir.model.fields,field_description:account_invoice_export_ubl.field_peppol_server_name
+msgid "Name"
+msgstr "Nom"
+
+#. module: account_invoice_export_ubl
+#: model:ir.model.fields,field_description:account_invoice_export_ubl.field_peppol_server_password
+msgid "Password"
+msgstr "Mot de passe"
+
+#. module: account_invoice_export_ubl
+#: model:ir.ui.view,arch_db:account_invoice_export_ubl.view_account_config_settings
+msgid "Peppol"
+msgstr "Peppol"
+
+#. module: account_invoice_export_ubl
+#: model:ir.actions.act_window,name:account_invoice_export_ubl.peppol_server_action
+#: model:ir.model.fields,field_description:account_invoice_export_ubl.field_account_config_settings_peppol_server_id
+#: model:ir.model.fields,field_description:account_invoice_export_ubl.field_res_company_peppol_server_id
+#: model:ir.ui.menu,name:account_invoice_export_ubl.menu_peppol_server
+msgid "Peppol Server"
+msgstr "Serveur Peppol"
+
+#. module: account_invoice_export_ubl
+#: model:ir.ui.view,arch_db:account_invoice_export_ubl.view_account_invoice_form
+msgid "Send Peppol"
+msgstr "Envoi Peppol"
+
+#. module: account_invoice_export_ubl
+#: model:ir.model.fields,field_description:account_invoice_export_ubl.field_peppol_history_server_id
+msgid "Server id"
+msgstr "Serveur id"
+
+#. module: account_invoice_export_ubl
+#: model:ir.model.fields,help:account_invoice_export_ubl.field_peppol_history_is_sending
+msgid "The document is being transported to the other party"
+msgstr "Le document est en cours d'envoi vers le destinataire"
+
+#. module: account_invoice_export_ubl
+#: model:ir.model.fields,field_description:account_invoice_export_ubl.field_peppol_server_url
+msgid "Url"
+msgstr "Url"
+
+#. module: account_invoice_export_ubl
+#: model:ir.model.fields,field_description:account_invoice_export_ubl.field_peppol_server_url_feedback
+msgid "Url feedback"
+msgstr "Url feedback"
+
+#. module: account_invoice_export_ubl
+#: model:ir.model.fields,field_description:account_invoice_export_ubl.field_peppol_server_user
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: account_invoice_export_ubl
+#: model:ir.model,name:account_invoice_export_ubl.model_account_config_settings
+msgid "account.config.settings"
+msgstr "account.config.settings"
+
+#. module: account_invoice_export_ubl
+#: model:ir.model,name:account_invoice_export_ubl.model_peppol_history
+msgid "peppol.history"
+msgstr "peppol.history"
+
+#. module: account_invoice_export_ubl
+#: model:ir.model,name:account_invoice_export_ubl.model_peppol_server
+msgid "peppol.server"
+msgstr "peppol.server"
+

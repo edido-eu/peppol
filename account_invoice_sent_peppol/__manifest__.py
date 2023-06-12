@@ -8,8 +8,12 @@
     "author": "BCIM",
     "license": "AGPL-3",
     "category": "Accounting & Finance",
-    "depends": ["account_invoice_sent"],
+    "depends": [
+        "account_invoice_sent",
+        "account_invoice_export_ubl",
+    ],
     "data": [
+        "views/account_invoice.xml",
         "wizards/account_invoice_state_view.xml",
     ],
     "installable": True,
