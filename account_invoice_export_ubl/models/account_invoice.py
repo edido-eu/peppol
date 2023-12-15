@@ -2,15 +2,14 @@
 # Copyright 2023 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
-from lxml import etree
-
 import odoo
+from lxml import etree
 from odoo import _, fields, models
 from odoo.exceptions import UserError, except_orm
 
 
-class AccountInvoice(models.Model):
-    _inherit = "account.invoice"
+class AccountMove(models.Model):
+    _inherit = "account.move"
 
     invoice_exported = fields.Boolean(copy=False)
     invoice_export_confirmed = fields.Boolean(copy=False)
@@ -19,6 +18,8 @@ class AccountInvoice(models.Model):
         """Export ebill to external server and update the chatter."""
         invoices_in_error = self.browse()
         for invoice in self:
+            if not invoice.is_invoice():
+                continue
             if invoice.invoice_exported:
                 continue
             try:
@@ -34,6 +35,8 @@ class AccountInvoice(models.Model):
                     values["error_detail"] = e.name
                 elif hasattr(e, "message"):
                     values["error_detail"] = e.message
+                else:
+                    values["error_detail"] = str(e)
                 with odoo.api.Environment.manage():
                     with odoo.registry(self.env.cr.dbname).cursor() as new_cr:
                         # Create a new environment with new cursor database
@@ -43,7 +46,7 @@ class AccountInvoice(models.Model):
                         # The chatter of the invoice need to be updated, when the job fails
                         invoice.with_env(new_env)._peppol_sending_log_error(values)
         if invoices_in_error == self:
-            raise  # FIXME
+            raise UserError("Peppol sending failed")
 
     def _peppol_export_invoice(self):
         """Export electronic invoice to external service."""
@@ -62,21 +65,19 @@ class AccountInvoice(models.Model):
         self.invoice_export_confirmed = True
 
     def _peppol_sending_log_error(self, values):
-        message = self.env.ref(
-            "account_invoice_export_ubl.sending_invoice_exception"
-        ).render(values=values)
+        template = "account_invoice_export_ubl.sending_invoice_exception"
+        message = self.env["ir.ui.view"]._render_template(template, values=values)
         self.message_post(body=message)
 
     def _peppol_sending_log_success(self):
         self.message_post(body=_("Invoice successfuly sent in UBL"))
 
-    def _ubl_add_order_reference(self, parent_node, ns, version='2.1'):
-        super(AccountInvoice, self)._ubl_add_order_reference(
-            parent_node, ns, version=version)
+    def _ubl_add_order_reference(self, parent_node, ns, version="2.1"):
+        super(AccountMove, self)._ubl_add_order_reference(
+            parent_node, ns, version=version
+        )
         # Order reference is mandatory
         if not self.name:
-            order_ref = etree.SubElement(
-                parent_node, ns['cac'] + 'OrderReference')
-            order_ref_id = etree.SubElement(
-                order_ref, ns['cbc'] + 'ID')
+            order_ref = etree.SubElement(parent_node, ns["cac"] + "OrderReference")
+            order_ref_id = etree.SubElement(order_ref, ns["cbc"] + "ID")
             order_ref_id.text = "/"

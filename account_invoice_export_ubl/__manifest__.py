@@ -3,18 +3,23 @@
 
 {
     "name": "Account Invoice Export UBL",
-    "version": "10.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Invoicing Management",
     "license": "AGPL-3",
     "summary": "Send UBL Invoice to Peppol",
     "author": "BCIM",
-    "depends": ["account", "account_invoice_ubl"],
+    "depends": [
+        "account",
+        "account_invoice_ubl",
+        "account_invoice_transmit_method",
+    ],
     "data": [
         "security/ir.model.access.csv",
         "views/account_invoice.xml",
         "views/peppol_server.xml",
-        "views/account_config_settings.xml",
+        "views/res_config_settings.xml",
         "data/template.xml",
+        "data/transmit_method.xml",
         "data/cron.xml",
     ],
     "installable": True,

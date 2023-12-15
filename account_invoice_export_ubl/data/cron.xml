@@ -7,10 +7,9 @@
         <field name="interval_number">1</field>
         <field name="interval_type">days</field>
         <field name="numbercall">-1</field>
-        <field name="nextcall">2023-01-01 02:30:00</field>
         <field name="doall" eval="False" />
-        <field name="model">peppol.server</field>
-        <field name="function">_cron_check_status</field>
+        <field name="model_id" ref="account_invoice_export_ubl.model_peppol_server" />
+        <field name="code">model._cron_check_status()</field>
     </record>
 
 </odoo>
