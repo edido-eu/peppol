@@ -3,12 +3,12 @@
 
 {
     "name": "Belgium Account E-Invoice BBA",
-    "version": "10.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Invoicing Management",
     "license": "AGPL-3",
-    "summary": "Add payment reference",
+    "summary": "Reformat BBA payment reference",
     "author": "BCIM",
-    "depends": ["account_e-invoice_generate", "l10n_be_invoice_bba"],
+    "depends": ["account_einvoice_generate", "l10n_be"],
     "data": [],
     "installable": True,
 }
