@@ -19,7 +19,7 @@ class BaseUBL(models.AbstractModel):
         version="2.1",
     ):
         if not payment_mode:
-            raise UserError(_("You must define a payement mode on the invoice"))
+            raise UserError(_("You must define a payment mode on the invoice"))
         return super(BaseUBL, self)._ubl_add_payment_means(
             partner_bank,
             payment_mode,
