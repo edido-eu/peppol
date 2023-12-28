@@ -56,7 +56,10 @@ class AccountMove(models.Model):
         if not server:
             raise UserError("Please define peppol server in the Accounting Settings")
         res = server._send_ubl(self, ubl)
-        self.invoice_exported = True
+        self.write({
+            "invoice_exported": True,
+            "is_move_sent": True,
+        })
         return res.text
 
     def _peppol_export_confirmed(self):
