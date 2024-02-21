@@ -9,6 +9,6 @@
     "summary": "Make the invoice payment mode required",
     "author": "BCIM",
     "depends": ["base_ubl_payment"],
-    "data": [],
+    "data": ["views/res_config_settings.xml"],
     "installable": True,
 }
