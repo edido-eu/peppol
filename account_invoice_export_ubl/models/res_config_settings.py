@@ -9,4 +9,5 @@ class ResConfigSettings(models.TransientModel):
 
     peppol_server_id = fields.Many2one(
         related="company_id.peppol_server_id",
+        readonly=False,
     )
