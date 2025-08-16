@@ -9,5 +9,5 @@ class ResCompany(models.Model):
 
     ubl_payment_mode_required = fields.Boolean(
         string="Payment mode required for UBL documents",
-        help="Check this if payment mode should be required in UBL documents",
+        help="Check this to make payment mode required in UBL documents",
     )
