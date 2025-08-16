@@ -8,7 +8,9 @@ Install the module and its dependencies:
 * https://github.com/OCA/edi/tree/16.0/account_invoice_ubl
 * https://github.com/edido-eu/peppol/tree/16.0/base_ubl_payment_mode_required
 
-Set UNECE codes on the taxes
+Set UNECE codes on the taxes:
+* For VAT, use categ "S", type "VAT"
+* For taxes without VAT, use "E", type "OTH"
 
 In the settings:
 * enable "Payment mode required for UBL documents"
