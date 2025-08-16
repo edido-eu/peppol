@@ -3,7 +3,7 @@
 
 {
     "name": "Belgium Account E-Invoice BBA",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "category": "Invoicing Management",
     "license": "AGPL-3",
     "summary": "Reformat BBA payment reference",
