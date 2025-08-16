@@ -25,9 +25,9 @@ Install the modules:
 * https://github.com/OCA/account-invoicing/tree/16.0/account_invoice_transmit_method
 * https://github.com/edido-eu/peppol/tree/16.0/account_invoice_export_ubl
 
-In the menu Settings > Technical > Peppol Server, configure the edido.eu gateway
-Production Peppol network: api.edido.eu
-Test Peppol network: test.edido.eu
+In the menu Settings > Technical > Peppol Server, configure the edido.eu gateway:
+* Production Peppol network: api.edido.eu
+* Test Peppol network: test.edido.eu
 
 In the Accounting/Invoicing settings, section "Electronic Invoices", select the peppol server to use.
 
