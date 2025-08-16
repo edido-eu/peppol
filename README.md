@@ -24,7 +24,6 @@ Install the modules:
 * https://github.com/OCA/server-tools/tree/16.0/base_view_inheritance_extension
 * https://github.com/OCA/account-invoicing/tree/16.0/account_invoice_transmit_method
 * https://github.com/edido-eu/peppol/tree/16.0/account_invoice_export_ubl
-* https://github.com/edido-eu/peppol/tree/16.0/account_invoice_transmit_peppol
 
 In the menu Settings > Technical > Peppol Server, configure the edido.eu gateway
 Production Peppol network: api.edido.eu
@@ -36,3 +35,10 @@ On the customer, sales tab, set the invoice transmit method to peppol.
 For self-billing, on the supplier, purchase tab, set the invoice receive method to peppol.
 
 When the invoice is posted, you should have a new button "SEND PEPPOL" in the header of the invoice.
+
+### Mass sending
+
+Install the modules:
+* https://github.com/OCA/account-invoicing/tree/16.0/account_invoice_transmit
+  * https://github.com/OCA/account-invoicing/pull/1715
+* https://github.com/edido-eu/peppol/tree/16.0/account_invoice_transmit_peppol
