@@ -38,6 +38,13 @@ For self-billing, on the supplier, purchase tab, set the invoice receive method 
 
 When the invoice is posted, you should have a new button "SEND PEPPOL" in the header of the invoice.
 
+### BBA structured communication
+
+The stored payment reference contains + and / characters that must be removed in the UBL document payment reference. For this purpose, you can install:
+* https://github.com/edido-eu/peppol/tree/16.0/l10n_be_account_einvoice_generate
+that depends on:
+* https://github.com/OCA/bank-payment/tree/16.0/account_payment_order
+
 ### Mass sending
 
 Install the modules:
