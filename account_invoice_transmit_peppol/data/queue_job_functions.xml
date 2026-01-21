@@ -3,11 +3,22 @@
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
 
+<record id="job_function_batch_send_invoice_peppol" model="queue.job.function">
+    <field name="model_id" ref="account.model_account_move" />
+    <field name="method">_batch_transmit_invoice_by_peppol</field>
+    <field name="channel_id" ref="invoice_transmit_peppol" />
+    <field
+      name="related_action"
+      eval='{"func_name": "related_action_open_invoice"}'
+    />
+</record>
 <record id="job_function_send_invoice_peppol" model="queue.job.function">
     <field name="model_id" ref="account.model_account_move" />
     <field name="method">_transmit_invoice_by_peppol</field>
     <field name="channel_id" ref="invoice_transmit_peppol" />
-    <field name="related_action" eval='{"func_name": "related_action_open_invoice"}' />
+    <field
+      name="related_action"
+      eval='{"func_name": "related_action_open_invoice"}'
+    />
 </record>
-
 </odoo>

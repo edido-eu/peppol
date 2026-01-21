@@ -44,7 +44,7 @@ class AccountInvoiceSent(models.TransientModel):
             identity_key=identity_exact,
             priority=40,
             channel="root.invoice_transmit.peppol",
-        )._transmit_invoice_by_peppol()
+        )._batch_transmit_invoice_by_peppol()
         self.env.user.notify_info(
             _("Invoices will be sent by peppol in the background.")
         )
