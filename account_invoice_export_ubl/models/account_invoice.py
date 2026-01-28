@@ -53,7 +53,7 @@ class AccountMove(models.Model):
         """Export electronic invoice to external service."""
         self.ensure_one()
         ubl = self.generate_ubl_xml_string()
-        server = self.env.user.company_id.peppol_server_id.sudo()
+        server = self.env.company.peppol_server_id.sudo()
         if not server:
             raise UserError(_("Please define peppol server in the Accounting Settings"))
         res = server._send_ubl(self, ubl)
