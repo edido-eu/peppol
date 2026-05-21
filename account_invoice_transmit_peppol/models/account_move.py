@@ -11,10 +11,12 @@ class AccountMove(models.Model):
     def _is_transmissible_by_peppol(self):
         """Check if the invoice can be sent by peppol"""
         self.ensure_one()
-        return (
-            not self.invoice_export_confirmed
-            and self.transmit_method_code == "peppol"
-        )
+        if self.transmit_method_code != "peppol":
+            return False
+        if self.invoice_exported and not self.invoice_export_confirmed:
+            # Already sent but confirmation not yet synced
+            return False
+        return not self.invoice_export_confirmed
 
     def _batch_transmit_invoice_by_peppol(self):
         """Mass sending by peppol
@@ -48,5 +50,5 @@ class AccountMove(models.Model):
     def _transmit_invoice_by_peppol(self):
         """Sending by peppol"""
         invoices = self.filtered(lambda p: p._is_transmissible_by_peppol())
-        invoices = self._transmit_invoice("peppol")
+        invoices = invoices._transmit_invoice("peppol")
         return invoices.peppol_export_invoice()
