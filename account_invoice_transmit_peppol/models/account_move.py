@@ -8,6 +8,16 @@ from odoo.addons.queue_job.job import identity_exact
 class AccountMove(models.Model):
     _inherit = "account.move"
 
+    def _is_transmissible_by_peppol(self):
+        """Check if the invoice can be sent by peppol"""
+        self.ensure_one()
+        if self.transmit_method_code != "peppol":
+            return False
+        if self.invoice_exported and not self.invoice_export_confirmed:
+            # Already sent but confirmation not yet synced
+            return False
+        return not self.invoice_export_confirmed
+
     def _batch_transmit_invoice_by_peppol(self):
         """Mass sending by peppol
 
@@ -18,20 +28,27 @@ class AccountMove(models.Model):
         """
         result = []
         for invoice in self:
-            description = _(
-                "Generating invoice for peppol sending: %(name)s",
-                name=invoice.display_name,
-            )
-            invoice.with_delay(
-                description=description,
-                identity_key=identity_exact,
-                priority=40,
-                channel="root.invoice_transmit.peppol",
-            )._transmit_invoice_by_peppol()
+            if not invoice._is_transmissible_by_peppol():
+                description = _(
+                    "Invoice already sent to peppol: %(name)s",
+                    name=invoice.name,
+                )
+            else:
+                description = _(
+                    "Generating invoice for peppol sending: %(name)s",
+                    name=invoice.name,
+                )
+                invoice.with_delay(
+                    description=description,
+                    identity_key=identity_exact,
+                    priority=40,
+                    channel="root.invoice_transmit.peppol",
+                )._transmit_invoice_by_peppol()
             result.append(description)
         return "\n".join(result)
 
     def _transmit_invoice_by_peppol(self):
         """Sending by peppol"""
-        invoices = self._transmit_invoice("peppol")
+        invoices = self.filtered(lambda p: p._is_transmissible_by_peppol())
+        invoices = invoices._transmit_invoice("peppol")
         return invoices.peppol_export_invoice()
