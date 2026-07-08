@@ -9,6 +9,12 @@ from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from requests.auth import HTTPBasicAuth
 
+TEMPORARY_NETWORK_ERROR_CODES = {502, 503}
+
+
+class PeppolTemporaryNetworkError(Exception):
+    pass
+
 
 class PeppolServer(models.Model):
     _name = "peppol.server"
@@ -47,6 +53,14 @@ class PeppolServer(models.Model):
         self.ensure_one()
         file_data = {"file": ubl}
         response = requests.post(self.url.lower(), auth=self._auth(), files=file_data)
+        if response.status_code in TEMPORARY_NETWORK_ERROR_CODES:
+            raise PeppolTemporaryNetworkError(
+                _(
+                    "HTTP error {} sending UBL: {}".format(
+                        response.status_code, response.text
+                    )
+                )
+            )
         if response.status_code != 200:
             raise UserError(
                 _(

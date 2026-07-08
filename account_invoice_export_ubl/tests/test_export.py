@@ -89,6 +89,72 @@ class TestExportUbl(BaseCommon):
             invoice.peppol_export_invoice()
         self.assertFalse(invoice.is_move_sent)
 
+    def test_export_network_failure_logs_invoice_error_without_context(self):
+        with Form(
+            self.env["account.move"].with_context(default_move_type="out_invoice")
+        ) as invoice_form:
+            invoice_form.partner_id = self.partner
+            with invoice_form.invoice_line_ids.new() as line_form:
+                line_form.product_id = self.product
+        invoice = invoice_form.save()
+
+        invoice.invoice_line_ids.tax_ids.unece_type_id = self.vat_type
+        invoice.invoice_line_ids.tax_ids.unece_categ_id = self.vat_categ
+        invoice._post()
+
+        response = Response()
+        response.status_code = 503
+        response._content = b"Service Unavailable"
+        with (
+            mock.patch("requests.post") as post_mock,
+            mock.patch.object(
+                type(invoice), "_peppol_sending_log_error"
+            ) as log_error,
+            self.assertRaisesRegex(UserError, "Peppol sending failed for"),
+        ):
+            post_mock.return_value = response
+            invoice.peppol_export_invoice()
+        log_error.assert_called_once()
+        self.assertFalse(invoice.is_move_sent)
+        self.assertFalse(invoice.invoice_exported)
+        self.assertFalse(invoice.invoice_export_confirmed)
+
+    def test_export_network_failure_raises_original_error_with_context(self):
+        with Form(
+            self.env["account.move"].with_context(default_move_type="out_invoice")
+        ) as invoice_form:
+            invoice_form.partner_id = self.partner
+            with invoice_form.invoice_line_ids.new() as line_form:
+                line_form.product_id = self.product
+        invoice = invoice_form.save()
+
+        invoice.invoice_line_ids.tax_ids.unece_type_id = self.vat_type
+        invoice.invoice_line_ids.tax_ids.unece_categ_id = self.vat_categ
+        invoice._post()
+
+        for status_code in (502, 503):
+            with self.subTest(status_code=status_code):
+                response = Response()
+                response.status_code = status_code
+                response._content = b"Service Unavailable"
+                with (
+                    mock.patch("requests.post") as post_mock,
+                    mock.patch.object(
+                        type(invoice), "_peppol_sending_log_error"
+                    ) as log_error,
+                    self.assertRaisesRegex(
+                        Exception, f"HTTP error {status_code} sending UBL"
+                    ),
+                ):
+                    post_mock.return_value = response
+                    invoice.with_context(
+                        peppol_raise_temporary_network_errors=True
+                    ).peppol_export_invoice()
+                log_error.assert_not_called()
+        self.assertFalse(invoice.is_move_sent)
+        self.assertFalse(invoice.invoice_exported)
+        self.assertFalse(invoice.invoice_export_confirmed)
+
     def test_status_error(self):
         with Form(
             self.env["account.move"].with_context(default_move_type="out_invoice")
