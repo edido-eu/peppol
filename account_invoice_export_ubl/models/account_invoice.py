@@ -7,6 +7,8 @@ from lxml import etree
 from odoo import _, fields, models
 from odoo.exceptions import UserError, except_orm
 
+from .peppol_server import PeppolTemporaryNetworkError
+
 
 class AccountMove(models.Model):
     _inherit = "account.move"
@@ -28,6 +30,10 @@ class AccountMove(models.Model):
                 invoice._peppol_export_invoice()
                 invoice._peppol_sending_log_success()
             except Exception as e:
+                if isinstance(e, PeppolTemporaryNetworkError) and self.env.context.get(
+                    "peppol_raise_temporary_network_errors"
+                ):
+                    raise
                 invoices_in_error |= invoice
                 values = {
                     "error_detail": "",
